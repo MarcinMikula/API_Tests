@@ -56,7 +56,7 @@ Follow these steps to set up and run the project locally:
 - **Git** (for cloning the repository)
 
 ### Installation
-1. **Clone the repository**:
+Clone the repository:
  ```bash
  git clone https://github.com/MarcinMikula/project-api-tests.git
  cd project-api-tests
