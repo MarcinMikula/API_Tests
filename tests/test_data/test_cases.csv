@@ -1,0 +1,21 @@
+test_id,description,endpoint,method,test_type,expected_status,expected_response
+TC_001,"Sprawdzenie poprawnego zwracania listy produktów",/api/v1/products,GET,functional,200,"[{""description"":""Laptop gamingowy"",""available"":true,""name"":""Laptop""}]"
+TC_002,"Sprawdzenie odpowiedzi dla nieistniejącego endpointu",/api/v1/nonexistent,GET,functional,404,"{""detail"": ""Not Found""}"
+TC_003,"Sprawdzenie dostępności API",/health,GET,performance,200,"{""status"": ""healthy""}"
+TC_004,"Test zabezpieczeń - brak autoryzacji",/api/v1/products,POST,security,401,"{""detail"": ""Not authenticated""}"
+TC_005,"Pobranie istniejącego produktu",/api/v1/products/1,GET,functional,200,"{""id"": 1}"
+TC_006,"Pobranie nieistniejącego produktu",/api/v1/products/999,GET,negative,404,"{""detail"": ""Product not found""}"
+TC_007,"Tworzenie nowego produktu",/api/v1/products,POST,functional,201,"{""id"": 21}"
+TC_008,"Tworzenie produktu z niepoprawnymi danymi",/api/v1/products,POST,negative,400,"{""detail"": [{""loc"":[""body"",""name""],""msg"":""field required"",""type"":""value_error.missing""}]}"
+TC_009,"Aktualizacja istniejącego produktu",/api/v1/products/1,PUT,functional,200,"{""id"": 1}"
+TC_010,"Aktualizacja nieistniejącego produktu",/api/v1/products/999,PUT,negative,404,"{""detail"": ""Product not found""}"
+TC_011,"Usunięcie istniejącego produktu",/api/v1/products/1,DELETE,functional,204,"{""detail"": ""Product deleted""}"
+TC_012,"Usunięcie nieistniejącego produktu",/api/v1/products/999,DELETE,negative,404,"{""detail"": ""Product not found""}"
+TC_013,"Sprawdzenie poprawności integracji z bazą danych",/api/v1/products,GET,integration,200,[]
+TC_014,"Test wydajnościowy dla listy produktów",/api/v1/products,GET,performance,200,[]
+TC_015,"Tworzenie produktu z ceną na granicy (0)",/api/v1/products,POST,functional,201,"{""id"": 22}"
+TC_016,"Tworzenie produktu z ujemną ceną",/api/v1/products,POST,negative,400,"{""detail"": ""ensure this value is greater than 0""}"
+TC_017,"Tworzenie produktu z bardzo dużą ceną",/api/v1/products,POST,functional,201,"{""id"": 23}"
+TC_018,"Tworzenie produktu z bardzo długą nazwą",/api/v1/products,POST,negative,400,"{""detail"": ""String too long""}"
+TC_019,"Usunięcie produktu który już został usunięty",/api/v1/products/1,DELETE,negative,404,"{""detail"": ""Product not found""}"
+TC_020,"Test różnych kombinacji parametrów (parowanie)",/api/v1/products,POST,functional,201,"{""id"": 24}"
