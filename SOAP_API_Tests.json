@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "446c4554-38b6-4934-a452-147e679d9424",
+		"name": "SOAP API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39234008",
+		"_collection_link": "https://www.postman.com/docking-module-geoscientist-49893604/workspace/freecodecamp-api-automation-with-postman/collection/39234008-446c4554-38b6-4934-a452-147e679d9424?action=share&source=collection_link&creator=39234008"
+	},
+	"item": [
+		{
+			"name": "GetProduct (SOAP_TC_001)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains product data\", function () {\r",
+							"    var xml = pm.response.text();\r",
+							"    pm.expect(xml).to.include(\"{'id': 1, 'name': 'Laptop', 'description': 'Laptop gamingowy'}\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/soap\">\r\n    <soap:Body>\r\n        <ns:GetProduct>\r\n            <id>1</id>\r\n        </ns:GetProduct>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8002/soap/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8002",
+					"path": [
+						"soap",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProduct (SOAP_TC_002)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains product ID\", function () {\r",
+							"    var xml = pm.response.text();\r",
+							"    pm.expect(xml).to.include(\"<result>21</result>\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/soap\">\r\n    <soap:Body>\r\n        <ns:CreateProduct>\r\n            <name>Test Product</name>\r\n            <description>Test Description</description>\r\n            <price>99.99</price>\r\n        </ns:CreateProduct>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8002/soap/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8002",
+					"path": [
+						"soap",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProduct (SOAP_TC_003)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is empty for 204 status\", function () {\r",
+							"    var responseText = pm.response.text();\r",
+							"    pm.expect(responseText).to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://example.com/soap\">\r\n    <soap:Body>\r\n        <ns:DeleteProduct>\r\n            <id>1</id>\r\n        </ns:DeleteProduct>\r\n    </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8002/soap/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8002",
+					"path": [
+						"soap",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
