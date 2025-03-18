@@ -1,4 +1,4 @@
-It was supposed to be just learning Python FastApi, but in parallel I started to about learn Artificial Intelligence and eventually, in addition to FastApi, there are SQLAlchemy, Requests, PyTest, JIRA.
+It was supposed to be just learning Python FastApi, but in parallel I started to about learn Artificial Intelligence and eventually, in addition to FastApi, there is DB SQLAlchemy based, Requests, PyTest, JIRA integration and many more.
 But in reality it's still a hull and there's a lot to improve and even more to add :)
 
 # Project API Tests
